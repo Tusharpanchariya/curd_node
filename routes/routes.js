@@ -17,36 +17,44 @@ var storage = multer.diskStorage({
 
 
 var upload = multer({
-    storage:storage,
+    storage: storage,
 }).single("image");
 
 // insert an user into database 
 router.post("/add",upload,(req,res)=>{
     const user = new User({
-        name:req.body.name,
-        email:req.body.email,
-        phone:req.body.phone,
-        image:req.file.filename,
-    });
-    user.save((err)=>{
-        if(err){
-            res.json({message:err.message,type:'danger'});
-
-
-
-        }else{
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        image: req.file.filename,
+    }); 
+   
+      user.save()
+        .then((savedDocument) => {
             req.session.message={
                 type:'success',
                 message: 'User Added Succesfully!',
-
             };
-            res.redirect("/");
-        }
-    })
-
+        //   console.log('Document saved:', savedDocument);
+          res.redirect("/");
+        })
+        .catch((error) => {
+          res.json({message:error.message,type:'Danger'});
+        });
+   
 });
 router.get("/",(req,res)=>{
-    res.render("index",{title:"Home Page"});
+    User.find().exec()
+    .then((users) => {
+      res.render('index', {
+        title: 'Home Page',
+        users: users,
+      });
+    })
+    .catch((err) => {
+      res.json({ message: err.message });
+    });
+  
 });
 router.get("/add",(req,res)=>{
     res.render("add_users",{title:"Add User"});
@@ -55,5 +63,8 @@ router.get("/add",(req,res)=>{
 router.get("/about",(req,res)=>{
     res.render("about",{title:"About"});
 });
+router.get('/edit/:id',(req,res)=>{
+  id
 
+});
 module.exports = router;
