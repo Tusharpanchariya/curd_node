@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fest List</title>
+</head>
+<body>
+    <h1>Fest List</h1>
+    <ul>
+        <% fest.forEach(fest => { %>
+            <li><%= fest.name %> - <%= fest.description %></li>
+        <% }) %>
+    </ul>
+    <a href="/fest/add">Add Another </a>
+</body>
+</html>

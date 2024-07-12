@@ -21,6 +21,7 @@
                     <th style="padding: 8px; background-color: #f2f2f2;">ID</th>
                     <th style="padding: 8px; background-color: #f2f2f2;">Image</th>
                     <th style="padding: 8px; background-color: #f2f2f2;">Name</th>
+                    <th style="padding: 8px; background-color: #f2f2f2;">Father Name</th>
                     <th style="padding: 8px; background-color: #f2f2f2;">Email</th>
                     <th style="padding: 8px; background-color: #f2f2f2;">Phone Number</th>
                     <th style="padding: 8px; background-color: #f2f2f2;">Action</th>
@@ -32,6 +33,7 @@
                     <td style="padding: 8px;"><%= index %></td>
                     <td style="padding: 8px;"><img src="<%= row.image %>"  width="50" class="img-thumbnail" alt="Image 1" style="width: 50px; height: auto;"/></td>
                     <td style="padding: 8px;"><%= row.name %></td>
+                    <td style="padding: 8px;"><%= row.fathername %></td>
                     <td style="padding: 8px;"><%=  row.email %></td>
                     <td style="padding: 8px;"><%= row.phone %></td>
                     <td style="padding: 8px;"> <a href="/edit/<%= row._id %>" class="text-primary"><i class="fas fa-edit fa-ig mx-1"></i></a>
@@ -46,10 +48,11 @@
         </table>
     
     <% }else { %>
-        <h1 class="text-center text secondary mt-5">No User found  int the database!</h1>
+        <h1 class="text-center text secondary mt-5">No User found  in the database!</h1>
         <% } %>
   
 </div>
+<!-- Tushar@0000#  -->
         </div>
 
     </div>

@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 4000;
 // database connectioin 
 mongoose.connect(process.env.DB_URI,{useNewUrlParser: true});
 const db = mongoose.connection;
+const festRoutes = require('./routes/fest');
 db.on("error", (error) => console.log(error));
 db.once("open",() => console.log("connected to the database!")); 
 // middlewares 
@@ -21,6 +22,7 @@ app.use(session({
     resave: false,
 })
 );
+app.use('/fest', festRoutes);
 app.use((req, res,next)=> {
     res.locals.message = req.session.message;
     delete req.session.message;
